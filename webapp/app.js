@@ -1,5 +1,6 @@
 const express = require('express');
 const config = require('./config.js');
+const socketio = require('socke.io');
 
 const app = express();
 //const app = require('express')();
@@ -14,4 +15,10 @@ app.use(express.static('public'));
 
 const server = app.listen(config.port, () => {
     console.log('Server in ascolto sulla porta ' + config.port + '...');
+});
+
+const io = socketio(server);
+
+io.on('connection', (socket) => {
+    console.log("client connesso");
 });
