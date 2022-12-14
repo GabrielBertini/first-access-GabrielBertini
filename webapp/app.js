@@ -20,5 +20,14 @@ const server = app.listen(config.port, () => {
 const io = socketio(server);
 
 io.on('connection', (socket) => {
-    console.log("client connesso");
+    console.log('client connesso');
+    socket.emit('welcome', 'Benvenuto nella chat.');
+    socket.on('register', (nome, password) => {
+        socket.nome = nome;
+        socket.password = password;
+        console.log("Nome:", socket.nome);
+        console.log("Password:", socket.password);
+        socket.emit('confirm', 'Registrazione avvenuta con successo. Benvenuto ' + socket.nome);
+    });
 });
+
