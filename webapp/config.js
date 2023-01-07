@@ -2,4 +2,5 @@ const config = {
     port: 3000
 }
 
-module.exports = config;
+//module.exports = config;
+export default config;

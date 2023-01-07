@@ -1,9 +1,9 @@
-const express = require('express');
-const config = require('./config.js');
-const socketio = require('socket.io');
+//const express = require('express');
+import { port } from './config.js';
+import socketio from 'socket.io';
 
-const app = express();
-//const app = require('express')();
+//const app = express();
+const app = require('express')();
 
 /* app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
@@ -12,9 +12,8 @@ const app = express();
 app.use(express.static('public'));
 
 
-
-const server = app.listen(config.port, () => {
-    console.log('Server in ascolto sulla porta ' + config.port + '...');
+const server = app.listen(port, () => {
+    console.log('Server in ascolto sulla porta ' + port + '...');
 });
 
 const io = socketio(server);
@@ -30,4 +29,3 @@ io.on('connection', (socket) => {
         socket.emit('confirm', 'Registrazione avvenuta con successo. Benvenuto ' + socket.nome);
     });
 });
-
